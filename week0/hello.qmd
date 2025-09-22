@@ -1,6 +1,7 @@
 ---
 title: Hello, Quarto
 format: html
+embed-resources: true
 ---
 
 ```{python}
