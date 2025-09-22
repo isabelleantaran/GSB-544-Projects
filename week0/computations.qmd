@@ -6,6 +6,7 @@ fig-width: 6
 format:
     html:
         code-fold: true
+        embed-resources: true
 ---
 
 This dataset contains a subset of the fuel economy data from the EPA.
