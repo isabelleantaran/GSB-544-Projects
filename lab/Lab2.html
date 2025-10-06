@@ -2224,6 +2224,7 @@ vertical-align: -.125em;
 </header>
 
 
+<p>Github link: https://github.com/isabelleantaran/GSB-544-Projects/tree/main/lab</p>
 <section id="import-the-data-and-declare-your-package-dependencies." class="level2">
 <h2 class="anchored" data-anchor-id="import-the-data-and-declare-your-package-dependencies.">0. Import the data and declare your package dependencies.</h2>
 <div id="f43930fb" class="cell" data-execution_count="644">
@@ -3491,7 +3492,7 @@ Index([&#39;RegionID&#39;, &#39;SizeRank&#39;, &#39;RegionName&#39;, &#39;Region
 </div>
 </div>
 </div>
-<div id="828ec5cd" class="cell" data-execution_count="672">
+<div id="828ec5cd" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>avocado_california[<span class="st">&quot;month&quot;</span>] <span class="op">=</span> avocado_california[<span class="st">&quot;date&quot;</span>].values.astype(<span class="st">&quot;datetime64[M]&quot;</span>)</span>
@@ -3504,8 +3505,7 @@ Index([&#39;RegionID&#39;, &#39;SizeRank&#39;, &#39;RegionName&#39;, &#39;Region
 <span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>        total_volume<span class="op">=</span>(<span class="st">&quot;total_volume&quot;</span>, <span class="st">&quot;sum&quot;</span>)</span>
 <span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a>california_monthly</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a>california_monthly</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -3643,102 +3643,62 @@ Index([&#39;RegionID&#39;, &#39;SizeRank&#39;, &#39;RegionName&#39;, &#39;Region
 <span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="eee911d4" class="cell" data-execution_count="675">
+<div id="eee911d4" class="cell" data-execution_count="686">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert date to datetime and extract month</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>zillow_long[<span class="st">&#39;date&#39;</span>] <span class="op">=</span> pd.to_datetime(zillow_long[<span class="st">&#39;date&#39;</span>], errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>zillow_long <span class="op">=</span> zillow_long.rename(columns<span class="op">=</span>{<span class="st">&#39;RegionName&#39;</span>: <span class="st">&#39;region&#39;</span>})</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>zillow_long[<span class="st">&#39;month&#39;</span>] <span class="op">=</span> zillow_long[<span class="st">&#39;date&#39;</span>].dt.month</span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Zillow long with month:&quot;</span>)</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(zillow_long.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>zillow_long[<span class="st">&#39;month&#39;</span>] <span class="op">=</span> zillow_long[<span class="st">&#39;date&#39;</span>].dt.month</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Zillow long with month:
-          region       date           house_price  month
-0    Los Angeles        NaT    Los Angeles County    NaN
-1      San Diego        NaT      San Diego County    NaN
-2  San Francisco        NaT  San Francisco County    NaN
-3     Sacramento        NaT     Sacramento County    NaN
-4    Los Angeles 2015-01-31           1783.747968    1.0</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>&lt;positron-console-cell-675&gt;:2: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.</code></pre>
-</div>
-</div>
-<div id="f81740e6" class="cell" data-execution_count="676">
+<div id="f81740e6" class="cell" data-execution_count="687">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate zillow data by region and month (averaging across all years)</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>zillow_monthly <span class="op">=</span> zillow_long.groupby([<span class="st">&#39;region&#39;</span>, <span class="st">&#39;month&#39;</span>])[<span class="st">&#39;house_price&#39;</span>].mean().reset_index()</span>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate zillow data by region and month (averaging across all years)</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>zillow_monthly <span class="op">=</span> zillow_long.groupby([<span class="st">&#39;region&#39;</span>, <span class="st">&#39;month&#39;</span>])[<span class="st">&#39;house_price&#39;</span>].mean().reset_index()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="ab05da99" class="cell" data-execution_count="688">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure month is an integer.</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>california_monthly[<span class="st">&#39;month&#39;</span>] <span class="op">=</span> california_monthly[<span class="st">&#39;month&#39;</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>zillow_monthly[<span class="st">&#39;month&#39;</span>] <span class="op">=</span> zillow_monthly[<span class="st">&#39;month&#39;</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>merged_data <span class="op">=</span> california_monthly.merge(</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>    zillow_monthly, </span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span>[<span class="st">&#39;region&#39;</span>, <span class="st">&#39;month&#39;</span>],</span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">&#39;inner&#39;</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div id="15d08d5e" class="cell" data-execution_count="689">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot to visualize the relationship. Plot average house price vs. average avocado price, colored by region.</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>p9.options.set_option(<span class="st">&#39;figure_size&#39;</span>, (<span class="dv">10</span>, <span class="dv">6</span>))</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Zillow monthly:&quot;</span>)</span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(zillow_monthly.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Zillow monthly:
-        region  month  house_price
-0  Los Angeles    1.0  2324.263885
-1  Los Angeles    2.0  2336.792864
-2  Los Angeles    3.0  2350.423897
-3  Los Angeles    4.0  2357.916063
-4  Los Angeles    5.0  2368.893984</code></pre>
-</div>
-</div>
-<div id="ab05da99" class="cell" data-execution_count="677">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure month is an integer.</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>california_monthly[<span class="st">&#39;month&#39;</span>] <span class="op">=</span> california_monthly[<span class="st">&#39;month&#39;</span>].astype(<span class="bu">int</span>)</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>zillow_monthly[<span class="st">&#39;month&#39;</span>] <span class="op">=</span> zillow_monthly[<span class="st">&#39;month&#39;</span>].astype(<span class="bu">int</span>)</span>
-<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>merged_data <span class="op">=</span> california_monthly.merge(</span>
-<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>    zillow_monthly, </span>
-<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span>[<span class="st">&#39;region&#39;</span>, <span class="st">&#39;month&#39;</span>],</span>
-<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">&#39;inner&#39;</span></span>
-<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Merged dataset:&quot;</span>)</span>
-<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(merged_data.head())</span>
-<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Shape: </span><span class="sc">{</span>merged_data<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Merged dataset:
-Empty DataFrame
-Columns: [region, type, month, average_price, total_volume, house_price]
-Index: []
-Shape: (0, 6)</code></pre>
-</div>
-</div>
-<div id="15d08d5e" class="cell" data-execution_count="682">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a scatter plot to visualize the relationship. Plot average house price vs. average avocado price, colored by region.</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>p9.options.set_option(<span class="st">&#39;figure_size&#39;</span>, (<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure all columns for plotting are numeric</span></span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>merged_data[<span class="st">&#39;average_price&#39;</span>] <span class="op">=</span> pd.to_numeric(merged_data[<span class="st">&#39;average_price&#39;</span>], errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>merged_data[<span class="st">&#39;house_price&#39;</span>] <span class="op">=</span> pd.to_numeric(merged_data[<span class="st">&#39;house_price&#39;</span>], errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>merged_data <span class="op">=</span> merged_data.dropna(subset<span class="op">=</span>[<span class="st">&#39;average_price&#39;</span>, <span class="st">&#39;house_price&#39;</span>])</span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>plot_avocado_housing <span class="op">=</span> (</span>
-<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>    p9.ggplot(merged_data, p9.aes(x<span class="op">=</span><span class="st">&#39;average_price&#39;</span>, y<span class="op">=</span><span class="st">&#39;house_price&#39;</span>, color<span class="op">=</span><span class="st">&#39;region&#39;</span>))</span>
-<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> p9.geom_point(alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
-<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> p9.labs(</span>
-<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">&#39;Average House Price vs. Average Avocado Price in California Regions&#39;</span>,</span>
-<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">&#39;Average Avocado Price (USD)&#39;</span>,</span>
-<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">&#39;Average House Price (USD)&#39;</span></span>
-<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> p9.theme_minimal()</span>
-<span id="cb55-18"><a href="#cb55-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> p9.theme(</span>
-<span id="cb55-19"><a href="#cb55-19" aria-hidden="true" tabindex="-1"></a>        plot_title<span class="op">=</span>p9.element_text(ha<span class="op">=</span><span class="st">&#39;center&#39;</span>),</span>
-<span id="cb55-20"><a href="#cb55-20" aria-hidden="true" tabindex="-1"></a>        axis_text_x<span class="op">=</span>p9.element_text(angle<span class="op">=</span><span class="dv">45</span>, hjust<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb55-21"><a href="#cb55-21" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb55-22"><a href="#cb55-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb55-23"><a href="#cb55-23" aria-hidden="true" tabindex="-1"></a>plot_avocado_housing.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure all columns for plotting are numeric</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>merged_data[<span class="st">&#39;average_price&#39;</span>] <span class="op">=</span> pd.to_numeric(merged_data[<span class="st">&#39;average_price&#39;</span>], errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>merged_data[<span class="st">&#39;house_price&#39;</span>] <span class="op">=</span> pd.to_numeric(merged_data[<span class="st">&#39;house_price&#39;</span>], errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>merged_data <span class="op">=</span> merged_data.dropna(subset<span class="op">=</span>[<span class="st">&#39;average_price&#39;</span>, <span class="st">&#39;house_price&#39;</span>])</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>plot_avocado_housing <span class="op">=</span> (</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>    p9.ggplot(merged_data, p9.aes(x<span class="op">=</span><span class="st">&#39;average_price&#39;</span>, y<span class="op">=</span><span class="st">&#39;house_price&#39;</span>, color<span class="op">=</span><span class="st">&#39;region&#39;</span>))</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> p9.geom_point(alpha<span class="op">=</span><span class="fl">0.7</span>)</span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> p9.labs(</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">&#39;Average House Price vs. Average Avocado Price in California Regions&#39;</span>,</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">&#39;Average Avocado Price (USD)&#39;</span>,</span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="st">&#39;Average House Price (USD)&#39;</span></span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> p9.theme_minimal()</span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> p9.theme(</span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>        plot_title<span class="op">=</span>p9.element_text(ha<span class="op">=</span><span class="st">&#39;center&#39;</span>),</span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a>        axis_text_x<span class="op">=</span>p9.element_text(angle<span class="op">=</span><span class="dv">45</span>, hjust<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a>plot_avocado_housing.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div>
@@ -3754,17 +3714,17 @@ The analysis across key California regions shows no significant negative correla
 <div id="86a52cd6" class="cell" data-execution_count="683">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the overall correlation coefficient between the two prices</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>overall_correlation <span class="op">=</span> merged_data[<span class="st">&#39;average_price&#39;</span>].corr(merged_data[<span class="st">&#39;house_price&#39;</span>])</span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Overall Avocado Price vs. House Price Correlation (r): </span><span class="sc">{</span>overall_correlation<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the correlation coefficient for each city</span></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>city_correlations <span class="op">=</span> merged_data.groupby(<span class="st">&#39;region&#39;</span>).<span class="bu">apply</span>(</span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> x: x[<span class="st">&#39;average_price&#39;</span>].corr(x[<span class="st">&#39;house_price&#39;</span>])</span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>).reset_index(name<span class="op">=</span><span class="st">&#39;Corr_Coefficient_r&#39;</span>)</span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">City-Specific Correlation Coefficients:&quot;</span>)</span>
-<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(city_correlations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the overall correlation coefficient between the two prices</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>overall_correlation <span class="op">=</span> merged_data[<span class="st">&#39;average_price&#39;</span>].corr(merged_data[<span class="st">&#39;house_price&#39;</span>])</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Overall Avocado Price vs. House Price Correlation (r): </span><span class="sc">{</span>overall_correlation<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the correlation coefficient for each city</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>city_correlations <span class="op">=</span> merged_data.groupby(<span class="st">&#39;region&#39;</span>).<span class="bu">apply</span>(</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">lambda</span> x: x[<span class="st">&#39;average_price&#39;</span>].corr(x[<span class="st">&#39;house_price&#39;</span>])</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>).reset_index(name<span class="op">=</span><span class="st">&#39;Corr_Coefficient_r&#39;</span>)</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">City-Specific Correlation Coefficients:&quot;</span>)</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(city_correlations)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Overall Avocado Price vs. House Price Correlation (r): 0.2678
