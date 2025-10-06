@@ -3969,22 +3969,21 @@ Index([&#39;RegionID&#39;, &#39;SizeRank&#39;, &#39;RegionName&#39;, &#39;Region
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>zillow_california <span class="op">=</span> zillow[(zillow[<span class="st">&#39;StateName&#39;</span>] <span class="op">==</span> <span class="st">&#39;CA&#39;</span>) <span class="op">&amp;</span> (zillow[<span class="st">&#39;RegionName&#39;</span>].isin(specific_cities))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="a904ef96" class="cell" data-execution_count="545">
+<div id="a904ef96" class="cell">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape zillow data from wide to long format</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The zillow data has dates as columns (1/31/2015, 2/28/2015, etc.)</span></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt it to have: RegionName, date, house_price</span></span>
 <span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all the date columns (they start after &#39;CountyName&#39;)</span></span>
-<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>date_columns <span class="op">=</span> zillow_california.columns[<span class="dv">7</span>:]  <span class="co"># Columns from index 7 onwards are dates</span></span>
-<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>zillow_long <span class="op">=</span> zillow_california.melt(</span>
-<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span>[<span class="st">&#39;RegionName&#39;</span>], </span>
-<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>    value_vars<span class="op">=</span>date_columns,</span>
-<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">&#39;date&#39;</span>,</span>
-<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">&#39;house_price&#39;</span></span>
-<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>date_columns <span class="op">=</span> zillow_california.columns[<span class="dv">7</span>:]  <span class="co"># Columns from index 7 onwards are dates</span></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>zillow_long <span class="op">=</span> zillow_california.melt(</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span>[<span class="st">&#39;RegionName&#39;</span>], </span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>    value_vars<span class="op">=</span>date_columns,</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">&#39;date&#39;</span>,</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">&#39;house_price&#39;</span></span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div id="eee911d4" class="cell" data-execution_count="546">
@@ -4031,7 +4030,7 @@ Zillow monthly:
 4  Los Angeles    5.0  2368.893984</code></pre>
 </div>
 </div>
-<div id="ab05da99" class="cell" data-execution_count="548">
+<div id="ab05da99" class="cell" data-execution_count="556">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure month is an integer.</span></span>
@@ -4051,82 +4050,67 @@ Zillow monthly:
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Merged dataset:
-Empty DataFrame
-Columns: [region, type, month, average_price, total_volume, house_price]
-Index: []
-Shape: (0, 6)</code></pre>
+        region  month  year  average_price  total_volume  house_price
+0  Los Angeles      1  2015        1.05000  1.340373e+06  2324.263885
+1  Los Angeles      1  2016        0.91300  1.683135e+06  2324.263885
+2  Los Angeles      1  2017        0.96300  1.895847e+06  2324.263885
+3  Los Angeles      1  2018        1.41300  1.435850e+06  2324.263885
+4  Los Angeles      1  2019        1.30125  1.763485e+06  2324.263885
+Shape: (284, 6)</code></pre>
 </div>
 </div>
-<div id="75d0937f" class="cell" data-execution_count="549">
+<div id="75d0937f" class="cell" data-execution_count="555">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter for California regions from your earlier code</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>california_regions <span class="op">=</span> [<span class="st">&#39;Los Angeles&#39;</span>, <span class="st">&#39;Sacramento&#39;</span>, <span class="st">&#39;San Diego&#39;</span>, <span class="st">&#39;San Francisco&#39;</span>]</span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>actual_california_regions <span class="op">=</span> [region <span class="cf">for</span> region <span class="kw">in</span> california_regions <span class="cf">if</span> region <span class="kw">in</span> avocado_clean[<span class="st">&#39;region&#39;</span>].unique()]</span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>avocado_california <span class="op">=</span> avocado_clean[avocado_clean[<span class="st">&#39;region&#39;</span>].isin(actual_california_regions)].copy()</span>
-<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure &#39;month&#39; and &#39;year&#39; are available in avocado_california</span></span>
-<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>avocado_california[<span class="st">&#39;month&#39;</span>] <span class="op">=</span> pd.to_datetime(avocado_california[<span class="st">&#39;date&#39;</span>]).dt.month</span>
-<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a>avocado_california[<span class="st">&#39;year&#39;</span>] <span class="op">=</span> pd.to_datetime(avocado_california[<span class="st">&#39;date&#39;</span>]).dt.year</span>
-<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate avocado data monthly for California regions</span></span>
-<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>california_monthly <span class="op">=</span> avocado_california.groupby([<span class="st">&#39;region&#39;</span>, <span class="st">&#39;month&#39;</span>, <span class="st">&#39;year&#39;</span>])[[<span class="st">&#39;average_price&#39;</span>, <span class="st">&#39;total_volume&#39;</span>]].mean().reset_index()</span>
-<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Melt to long format</span></span>
-<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a>zillow_long <span class="op">=</span> zillow.melt(</span>
-<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span>[<span class="st">&#39;RegionName&#39;</span>, <span class="st">&#39;RegionType&#39;</span>, <span class="st">&#39;StateName&#39;</span>, <span class="st">&#39;State&#39;</span>, <span class="st">&#39;Metro&#39;</span>, <span class="st">&#39;CountyName&#39;</span>],</span>
-<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">&#39;date&#39;</span>,</span>
-<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">&#39;house_price&#39;</span></span>
-<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename RegionName to region for consistency</span></span>
-<span id="cb60-22"><a href="#cb60-22" aria-hidden="true" tabindex="-1"></a>zillow_long <span class="op">=</span> zillow_long.rename(columns<span class="op">=</span>{<span class="st">&#39;RegionName&#39;</span>: <span class="st">&#39;region&#39;</span>})</span>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>california_regions <span class="op">=</span> [<span class="st">&#39;Los Angeles&#39;</span>, <span class="st">&#39;Sacramento&#39;</span>, <span class="st">&#39;San Diego&#39;</span>, <span class="st">&#39;San Francisco&#39;</span>]</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>actual_california_regions <span class="op">=</span> [region <span class="cf">for</span> region <span class="kw">in</span> california_regions <span class="cf">if</span> region <span class="kw">in</span> avocado_clean[<span class="st">&#39;region&#39;</span>].unique()]</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>avocado_california <span class="op">=</span> avocado_clean[avocado_clean[<span class="st">&#39;region&#39;</span>].isin(actual_california_regions)].copy()</span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>avocado_california[<span class="st">&#39;month&#39;</span>] <span class="op">=</span> pd.to_datetime(avocado_california[<span class="st">&#39;date&#39;</span>]).dt.month</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>avocado_california[<span class="st">&#39;year&#39;</span>] <span class="op">=</span> pd.to_datetime(avocado_california[<span class="st">&#39;date&#39;</span>]).dt.year</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>california_monthly <span class="op">=</span> avocado_california.groupby([<span class="st">&#39;region&#39;</span>, <span class="st">&#39;month&#39;</span>, <span class="st">&#39;year&#39;</span>])[[<span class="st">&#39;average_price&#39;</span>, <span class="st">&#39;total_volume&#39;</span>]].mean().reset_index()</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a>zillow_long <span class="op">=</span> zillow.melt(</span>
+<span id="cb60-11"><a href="#cb60-11" aria-hidden="true" tabindex="-1"></a>    id_vars<span class="op">=</span>[<span class="st">&#39;RegionName&#39;</span>, <span class="st">&#39;RegionType&#39;</span>, <span class="st">&#39;StateName&#39;</span>, <span class="st">&#39;State&#39;</span>, <span class="st">&#39;Metro&#39;</span>, <span class="st">&#39;CountyName&#39;</span>],</span>
+<span id="cb60-12"><a href="#cb60-12" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">&#39;date&#39;</span>,</span>
+<span id="cb60-13"><a href="#cb60-13" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">&#39;house_price&#39;</span></span>
+<span id="cb60-14"><a href="#cb60-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb60-15"><a href="#cb60-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-16"><a href="#cb60-16" aria-hidden="true" tabindex="-1"></a>zillow_long <span class="op">=</span> zillow_long.rename(columns<span class="op">=</span>{<span class="st">&#39;RegionName&#39;</span>: <span class="st">&#39;region&#39;</span>})</span>
+<span id="cb60-17"><a href="#cb60-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-18"><a href="#cb60-18" aria-hidden="true" tabindex="-1"></a>zillow_long[<span class="st">&#39;date&#39;</span>] <span class="op">=</span> pd.to_datetime(zillow_long[<span class="st">&#39;date&#39;</span>], errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span>
+<span id="cb60-19"><a href="#cb60-19" aria-hidden="true" tabindex="-1"></a>zillow_long[<span class="st">&#39;month&#39;</span>] <span class="op">=</span> zillow_long[<span class="st">&#39;date&#39;</span>].dt.month</span>
+<span id="cb60-20"><a href="#cb60-20" aria-hidden="true" tabindex="-1"></a>zillow_long <span class="op">=</span> zillow_long.dropna(subset<span class="op">=</span>[<span class="st">&#39;date&#39;</span>, <span class="st">&#39;month&#39;</span>]) <span class="co"># Drop rows where date conversion failed</span></span>
+<span id="cb60-21"><a href="#cb60-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-22"><a href="#cb60-22" aria-hidden="true" tabindex="-1"></a>zillow_monthly <span class="op">=</span> zillow_long.groupby([<span class="st">&#39;region&#39;</span>, <span class="st">&#39;month&#39;</span>])[<span class="st">&#39;house_price&#39;</span>].mean().reset_index()</span>
 <span id="cb60-23"><a href="#cb60-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-24"><a href="#cb60-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert date to datetime and extract month</span></span>
-<span id="cb60-25"><a href="#cb60-25" aria-hidden="true" tabindex="-1"></a>zillow_long[<span class="st">&#39;date&#39;</span>] <span class="op">=</span> pd.to_datetime(zillow_long[<span class="st">&#39;date&#39;</span>], errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span>
-<span id="cb60-26"><a href="#cb60-26" aria-hidden="true" tabindex="-1"></a>zillow_long[<span class="st">&#39;month&#39;</span>] <span class="op">=</span> zillow_long[<span class="st">&#39;date&#39;</span>].dt.month</span>
-<span id="cb60-27"><a href="#cb60-27" aria-hidden="true" tabindex="-1"></a>zillow_long <span class="op">=</span> zillow_long.dropna(subset<span class="op">=</span>[<span class="st">&#39;date&#39;</span>, <span class="st">&#39;month&#39;</span>]) <span class="co"># Drop rows where date conversion failed</span></span>
-<span id="cb60-28"><a href="#cb60-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-29"><a href="#cb60-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Aggregate zillow data by region and month (averaging across all years for simplicity in this example)</span></span>
-<span id="cb60-30"><a href="#cb60-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: For a more precise analysis, you might want to merge by year as well.</span></span>
-<span id="cb60-31"><a href="#cb60-31" aria-hidden="true" tabindex="-1"></a><span class="co"># However, the avocado data years are 2015-2020 and zillow data has many years.</span></span>
-<span id="cb60-32"><a href="#cb60-32" aria-hidden="true" tabindex="-1"></a><span class="co"># If we were to join on year, we would need to ensure overlapping years and average accordingly.</span></span>
-<span id="cb60-33"><a href="#cb60-33" aria-hidden="true" tabindex="-1"></a><span class="co"># For now, let&#39;s average house prices per month across all available years in Zillow for each region.</span></span>
-<span id="cb60-34"><a href="#cb60-34" aria-hidden="true" tabindex="-1"></a><span class="co"># This assumes average monthly house price trends are somewhat stable across these years or we want a general relationship.</span></span>
-<span id="cb60-35"><a href="#cb60-35" aria-hidden="true" tabindex="-1"></a>zillow_monthly <span class="op">=</span> zillow_long.groupby([<span class="st">&#39;region&#39;</span>, <span class="st">&#39;month&#39;</span>])[<span class="st">&#39;house_price&#39;</span>].mean().reset_index()</span>
+<span id="cb60-24"><a href="#cb60-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter Zillow data to only include our specific California regions</span></span>
+<span id="cb60-25"><a href="#cb60-25" aria-hidden="true" tabindex="-1"></a>zillow_monthly <span class="op">=</span> zillow_monthly[zillow_monthly[<span class="st">&#39;region&#39;</span>].isin(actual_california_regions)]</span>
+<span id="cb60-26"><a href="#cb60-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-27"><a href="#cb60-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure month is an integer in both datasets for merging</span></span>
+<span id="cb60-28"><a href="#cb60-28" aria-hidden="true" tabindex="-1"></a>california_monthly[<span class="st">&#39;month&#39;</span>] <span class="op">=</span> california_monthly[<span class="st">&#39;month&#39;</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb60-29"><a href="#cb60-29" aria-hidden="true" tabindex="-1"></a>zillow_monthly[<span class="st">&#39;month&#39;</span>] <span class="op">=</span> zillow_monthly[<span class="st">&#39;month&#39;</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb60-30"><a href="#cb60-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-31"><a href="#cb60-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Unique regions in california_monthly:&quot;</span>, california_monthly[<span class="st">&#39;region&#39;</span>].unique())</span>
+<span id="cb60-32"><a href="#cb60-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Unique regions in zillow_monthly:&quot;</span>, zillow_monthly[<span class="st">&#39;region&#39;</span>].unique())</span>
+<span id="cb60-33"><a href="#cb60-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-34"><a href="#cb60-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Unique months in california_monthly:&quot;</span>, california_monthly[<span class="st">&#39;month&#39;</span>].unique())</span>
+<span id="cb60-35"><a href="#cb60-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Unique months in zillow_monthly:&quot;</span>, zillow_monthly[<span class="st">&#39;month&#39;</span>].unique())</span>
 <span id="cb60-36"><a href="#cb60-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-37"><a href="#cb60-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter Zillow data to only include our specific California regions</span></span>
-<span id="cb60-38"><a href="#cb60-38" aria-hidden="true" tabindex="-1"></a>zillow_monthly <span class="op">=</span> zillow_monthly[zillow_monthly[<span class="st">&#39;region&#39;</span>].isin(actual_california_regions)]</span>
-<span id="cb60-39"><a href="#cb60-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-40"><a href="#cb60-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Ensure month is an integer in both datasets for merging</span></span>
-<span id="cb60-41"><a href="#cb60-41" aria-hidden="true" tabindex="-1"></a>california_monthly[<span class="st">&#39;month&#39;</span>] <span class="op">=</span> california_monthly[<span class="st">&#39;month&#39;</span>].astype(<span class="bu">int</span>)</span>
-<span id="cb60-42"><a href="#cb60-42" aria-hidden="true" tabindex="-1"></a>zillow_monthly[<span class="st">&#39;month&#39;</span>] <span class="op">=</span> zillow_monthly[<span class="st">&#39;month&#39;</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb60-37"><a href="#cb60-37" aria-hidden="true" tabindex="-1"></a>merged_data <span class="op">=</span> pd.merge(</span>
+<span id="cb60-38"><a href="#cb60-38" aria-hidden="true" tabindex="-1"></a>    california_monthly,</span>
+<span id="cb60-39"><a href="#cb60-39" aria-hidden="true" tabindex="-1"></a>    zillow_monthly,</span>
+<span id="cb60-40"><a href="#cb60-40" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span>[<span class="st">&#39;region&#39;</span>, <span class="st">&#39;month&#39;</span>],</span>
+<span id="cb60-41"><a href="#cb60-41" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">&#39;inner&#39;</span></span>
+<span id="cb60-42"><a href="#cb60-42" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb60-43"><a href="#cb60-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-44"><a href="#cb60-44" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Merging the datasets ---</span></span>
-<span id="cb60-45"><a href="#cb60-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform an inner merge on &#39;region&#39; and &#39;month&#39;.</span></span>
-<span id="cb60-46"><a href="#cb60-46" aria-hidden="true" tabindex="-1"></a><span class="co"># We need to consider how to handle &#39;year&#39;. If you want to compare specific years,</span></span>
-<span id="cb60-47"><a href="#cb60-47" aria-hidden="true" tabindex="-1"></a><span class="co"># we need to ensure &#39;year&#39; is also part of the merge key and available in Zillow monthly data.</span></span>
-<span id="cb60-48"><a href="#cb60-48" aria-hidden="true" tabindex="-1"></a><span class="co"># For now, let&#39;s proceed with averaging Zillow house prices across years per month.</span></span>
-<span id="cb60-49"><a href="#cb60-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-50"><a href="#cb60-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s inspect unique regions in both dataframes before merging</span></span>
-<span id="cb60-51"><a href="#cb60-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Unique regions in california_monthly:&quot;</span>, california_monthly[<span class="st">&#39;region&#39;</span>].unique())</span>
-<span id="cb60-52"><a href="#cb60-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Unique regions in zillow_monthly:&quot;</span>, zillow_monthly[<span class="st">&#39;region&#39;</span>].unique())</span>
-<span id="cb60-53"><a href="#cb60-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-54"><a href="#cb60-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Also inspect unique months</span></span>
-<span id="cb60-55"><a href="#cb60-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Unique months in california_monthly:&quot;</span>, california_monthly[<span class="st">&#39;month&#39;</span>].unique())</span>
-<span id="cb60-56"><a href="#cb60-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Unique months in zillow_monthly:&quot;</span>, zillow_monthly[<span class="st">&#39;month&#39;</span>].unique())</span>
-<span id="cb60-57"><a href="#cb60-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-58"><a href="#cb60-58" aria-hidden="true" tabindex="-1"></a>merged_data <span class="op">=</span> pd.merge(</span>
-<span id="cb60-59"><a href="#cb60-59" aria-hidden="true" tabindex="-1"></a>    california_monthly,</span>
-<span id="cb60-60"><a href="#cb60-60" aria-hidden="true" tabindex="-1"></a>    zillow_monthly,</span>
-<span id="cb60-61"><a href="#cb60-61" aria-hidden="true" tabindex="-1"></a>    on<span class="op">=</span>[<span class="st">&#39;region&#39;</span>, <span class="st">&#39;month&#39;</span>],</span>
-<span id="cb60-62"><a href="#cb60-62" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">&#39;inner&#39;</span></span>
-<span id="cb60-63"><a href="#cb60-63" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb60-64"><a href="#cb60-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb60-65"><a href="#cb60-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Merged dataset (after fixing):</span><span class="ch">\n</span><span class="st">&quot;</span>, merged_data.head())</span>
-<span id="cb60-66"><a href="#cb60-66" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Shape of merged dataset:&quot;</span>, merged_data.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb60-44"><a href="#cb60-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;</span><span class="ch">\n</span><span class="st">Merged dataset (after fixing):</span><span class="ch">\n</span><span class="st">&quot;</span>, merged_data.head())</span>
+<span id="cb60-45"><a href="#cb60-45" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&quot;Shape of merged dataset:&quot;</span>, merged_data.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>&lt;positron-console-cell-555&gt;:18: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Unique regions in california_monthly: [&#39;Los Angeles&#39; &#39;Sacramento&#39; &#39;San Diego&#39; &#39;San Francisco&#39;]
@@ -4143,9 +4127,6 @@ Merged dataset (after fixing):
 3  Los Angeles      1  2018        1.41300  1.435850e+06  2324.263885
 4  Los Angeles      1  2019        1.30125  1.763485e+06  2324.263885
 Shape of merged dataset: (284, 6)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>&lt;positron-console-cell-549&gt;:24: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.</code></pre>
 </div>
 </div>
 <div id="15d08d5e" class="cell" data-execution_count="550">
