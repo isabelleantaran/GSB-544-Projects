@@ -2215,11 +2215,12 @@ vertical-align: -.125em;
 </header>
 
 
+<p>Github link: https://github.com/isabelleantaran/GSB-544-Projects/tree/main/week4</p>
 <section id="xml-html-and-web-scraping" class="level1">
 <h1>XML, HTML, and Web Scraping</h1>
 <p>JSON and XML are two different ways to represent hierarchical data. Which one is better? There are lots of articles online which discuss similarities and differences between JSON and XML and their advantages and disadvantages. Both formats are still in current usage, so it is good to be familiar with both. However, JSON is more common, so we’ll focus on working with JSON representations of hierarchical data.</p>
 <p>The reading covered an example of using Beautiful Soup to parse XML. Rather than doing another example XML now, we’ll skip straight to scraping HTML from a webpage. Both HTML and XML can be parsed in a similar way with Beautiful Soup.</p>
-<div id="cell-2" class="cell" data-execution_count="89">
+<div id="cell-3" class="cell" data-execution_count="89">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -2231,7 +2232,7 @@ vertical-align: -.125em;
 <h2 class="anchored" data-anchor-id="scraping-an-html-table-with-beautiful-soup">Scraping an HTML table with Beautiful Soup</h2>
 <p>Open the URL https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population and scroll down until you see a table of the cities in the U.S. with population over 100,000 (as of Jul 1, 2022). We’ll use Beautiful Soup to scrape information from this table.</p>
 <p>Read in the HTML from the ULR using the <code>requests</code> library.</p>
-<div id="cell-6" class="cell" data-execution_count="90">
+<div id="cell-7" class="cell" data-execution_count="90">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">&quot;https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population&quot;</span></span>
@@ -2240,7 +2241,7 @@ vertical-align: -.125em;
 </details>
 </div>
 <p>Use Beautiful Soup to parse this string into a tree called <code>soup</code></p>
-<div id="cell-8" class="cell" data-execution_count="91">
+<div id="cell-9" class="cell" data-execution_count="91">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Get HTML and build soup</span></span>
@@ -2251,7 +2252,7 @@ vertical-align: -.125em;
 <p>You should find that the cities table on the Wikipedia page corresponds to the element</p>
 <pre><code>&lt;table class=&quot;wikitable sortable jquery-tablesorter&quot; style=&quot;text-align:center&quot;&gt;</code></pre>
 <p>There are many <code>&lt;table&gt;</code> tags on the page.</p>
-<div id="cell-11" class="cell" data-execution_count="92">
+<div id="cell-12" class="cell" data-execution_count="92">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(soup.find_all(<span class="st">&quot;table&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2261,7 +2262,7 @@ vertical-align: -.125em;
 </div>
 </div>
 <p>We can use attributes like <code>class=</code> and <code>style=</code> to narrow down the list.</p>
-<div id="cell-13" class="cell" data-execution_count="93">
+<div id="cell-14" class="cell" data-execution_count="93">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(soup.find_all(<span class="st">&quot;table&quot;</span>,</span>
@@ -2275,7 +2276,7 @@ vertical-align: -.125em;
 </div>
 </div>
 <p>At this point, you can manually inspect the tables on the webpage to find that the one we want is the first one (see <code>[0]</code> below). We’ll store this as <code>table</code>.</p>
-<div id="cell-15" class="cell" data-execution_count="94">
+<div id="cell-16" class="cell" data-execution_count="94">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>table <span class="op">=</span> soup.find_all(<span class="st">&quot;table&quot;</span>,</span>
@@ -9582,7 +9583,7 @@ vertical-align: -.125em;
 </div>
 </div>
 <p><strong>Now you will write code to scrape the information in <code>table</code> to create a Pandas data frame with one row for each city and columns for: city, state, population (2022 estimate), and 2020 land area (sq mi).</strong> Refer to the Notes/suggestions below as you write your code. A few Hints are provided further down, but try coding first before looking at the hints.</p>
-<div id="cell-17" class="cell" data-execution_count="95">
+<div id="cell-18" class="cell" data-execution_count="95">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Extract data from each row </span></span>
@@ -9617,7 +9618,7 @@ vertical-align: -.125em;
 <span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="cell-18" class="cell" data-execution_count="107">
+<div id="cell-19" class="cell" data-execution_count="107">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>table_df<span class="op">=</span> pd.DataFrame(rows)</span>
@@ -9653,21 +9654,21 @@ vertical-align: -.125em;
 <p>The Pandas command <code>read_html</code> can be used to scrape information from an HTML table on a webpage.</p>
 <p>We can call <code>read_html</code> on the URL.</p>
 <p>Note: re discord, can skip the whole HTML with pandas section. Commenting out.</p>
-<div id="cell-24" class="cell" data-execution_count="97">
+<div id="cell-25" class="cell" data-execution_count="97">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pd.read_html(&quot;https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population&quot;)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>However, this scrapes all the tables on the webpage, not just the one we want. As with Beautiful Soup, we can narrow the search by specifying the table attributes.</p>
-<div id="cell-26" class="cell" data-execution_count="98">
+<div id="cell-27" class="cell" data-execution_count="98">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pd.read_html(&quot;https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population&quot;, attrs = {&#39;class&#39;: &#39;wikitable sortable&#39;, &quot;style&quot;: &quot;text-align:center&quot;})</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>This still returns 3 tables. As we remarked above, the table that we want is the first one (see <code>[0]</code> below).</p>
-<div id="cell-28" class="cell" data-execution_count="99">
+<div id="cell-29" class="cell" data-execution_count="99">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#df_cities2 = pd.read_html(&quot;https://en.wikipedia.org/wiki/List_of_United_States_cities_by_population&quot;, attrs = {&#39;class&#39;: &#39;wikitable sortable&#39;, &quot;style&quot;: &quot;text-align:center&quot;})[0]</span></span>
@@ -9680,7 +9681,7 @@ vertical-align: -.125em;
 <h2 class="anchored" data-anchor-id="scraping-information-that-is-not-in-a-table-with-beautiful-soup">Scraping information that is NOT in a <code>&lt;table&gt;</code> with Beautiful Soup</h2>
 <p>The Cal Poly course catalog http://catalog.calpoly.edu/collegesandprograms/collegeofsciencemathematics/statistics/#courseinventory contains a list of courses offered by the Statistics department. <strong>You will scrape this website to obtain a Pandas data frame with one row for each DATA or STAT course and two columns: course name and number (e.g, DATA 301. Introduction to Data Science) and term typically offered (e.g., Term Typically Offered: F, W, SP).</strong></p>
 <p>Note: Pandas <code>read_html</code> is not help here since the courses are not stored in a <code>&lt;table&gt;.</code></p>
-<div id="cell-33" class="cell" data-execution_count="100">
+<div id="cell-34" class="cell" data-execution_count="100">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pd.read_html(<span class="st">&quot;http://catalog.calpoly.edu/collegesandprograms/collegeofsciencemathematics/statistics/#courseinventory&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -9705,7 +9706,7 @@ vertical-align: -.125em;
 <li>Don’t forget to convert to a Pandas Data Frame; it should have 74 rows and 2 columns</li>
 <li>The goal of this exercise is just to create the Data Frame. If you were going to use it then you might need to clean the data first. (You can use Beautiful Soup to do some of the cleaning for you, but that goes beyond our scope.)</li>
 </ul>
-<div id="cell-35" class="cell" data-execution_count="101">
+<div id="cell-36" class="cell" data-execution_count="101">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -9713,7 +9714,7 @@ vertical-align: -.125em;
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="cell-36" class="cell" data-execution_count="102">
+<div id="cell-37" class="cell" data-execution_count="102">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>CATALOG_URL <span class="op">=</span> <span class="st">&quot;http://catalog.calpoly.edu/collegesandprograms/collegeofsciencemathematics/statistics/#courseinventory&quot;</span></span>
@@ -9756,7 +9757,7 @@ vertical-align: -.125em;
 <span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a>    })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<div id="cell-37" class="cell" data-execution_count="103">
+<div id="cell-38" class="cell" data-execution_count="103">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>courses_df <span class="op">=</span> pd.DataFrame(courses)</span>
@@ -9766,7 +9767,7 @@ vertical-align: -.125em;
 <pre><code>(74, 2)</code></pre>
 </div>
 </div>
-<div id="cell-38" class="cell" data-execution_count="108">
+<div id="cell-39" class="cell" data-execution_count="108">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(courses_df.head())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
